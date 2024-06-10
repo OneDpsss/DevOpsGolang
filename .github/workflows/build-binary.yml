@@ -1,25 +1,24 @@
-name: build-test
+name: Build and Release
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: [ "main", "develop" ]
   pull_request:
-    branches: [ "main", "dev" ]
+    branches: [ "main", "develop" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.22.2'
 
-      - name: Build
-        run: go build -v ./app/main.go
-
-      - name: Test
-        run: go test -v ./...
+      - name: Build binary
+        run: |
+          go build -o binary ./main.go
