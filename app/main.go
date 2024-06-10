@@ -2,6 +2,20 @@ package main
 
 import "fmt"
 
+func main() {
+	var num1, num2 float64
+	var operator string
+
+	fmt.Scanln(&num1)
+	fmt.Scanln(&operator)
+	fmt.Scanln(&num2)
+	result, err := calculate(num1, num2, operator)
+	if err != nil {
+		fmt.Println("Error:", err)
+	} else {
+		fmt.Printf("Result: %.2f\n", result)
+	}
+}
 func calculate(num1, num2 float64, operator string) (float64, error) {
 	switch operator {
 	case "+":
